@@ -1,0 +1,14 @@
+{
+  "name": "alurageek",
+  "version": "1.0.0",
+  "description": "Proyecto e-commerce para presentar en Oracle-AluraLatam",
+  "main": "index_prod.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "e-commerce"
+  ],
+  "author": "MattDeveloper",
+  "license": "ISC"
+}
