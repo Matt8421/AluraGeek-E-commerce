@@ -2,99 +2,116 @@
  * Copyright (c) 2025 Your Company Name
  * All rights reserved.
  */
+/*
+ * editProduct.js - Manejo de edición de productos.
+ */
 
+// Obtiene el parámetro `id` de la URL
+function getProductIdFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
 
-import { clientService } from "./client-service.js";
+    if (!id) {
+        console.error("No se encontró un ID en la URL. Asegúrate de usar ?id= en la URL.");
+        alert("No se encontró un ID de producto en la URL. Verifica el enlace.");
+    } else {
+        console.log("ID obtenido de la URL:", id);
+    }
 
-/*const url = new URL(window.location);
-const id = url.searchParams.get('id')
-const form = document.querySelector('.add-product__form');
+    return id;
+}
 
-const getProduct = async (id) => {
+// Carga los detalles del producto en el formulario
+async function loadProductDetails(productId) {
+    if (!productId) {
+        console.error("No se encontró un ID en la URL.");
+        alert("No se proporcionó un ID de producto en la URL.");
+        return;
+    }
+
+    const productUrl = `http://localhost:3001/products/${productId}`;
+    console.log(`Intentando cargar datos del producto desde: ${productUrl}`);
+
     try {
-        const arrProduct = await clientService.readProduct(id);
-        createCard(arrProduct)
+        const response = await fetch(productUrl);
+        if (!response.ok) {
+            throw new Error(`Error ${response.status}: ${response.statusText}`);
+        }
+
+        const product = await response.json();
+        console.log("Producto obtenido del servidor:", product);
+
+        // Rellena los campos del formulario con los datos del producto
+        document.getElementById("product-name").value = product.name || "";
+        document.getElementById("category").value = product.category || "";
+        document.getElementById("price").value = product.price || "";
+        document.getElementById("description").value = product.description || "";
+        document.getElementById("img").value = product.url || "";
+
+        console.log("Formulario cargado con los datos del producto.");
     } catch (error) {
-        console.log(error)
+        console.error("Error al cargar los detalles del producto:", error);
+        alert("Hubo un error al comunicarse con el servidor. Verifica la conexión.");
     }
 }
 
-const createCard = ({name, category, url, price, description}) => {
-    const inputName = document.querySelector('#product-name');
-    const inputcategory = document.querySelector('#category');
-    const inputUrl = document.querySelector('#img');
-    const inputPrice = document.querySelector('#price');
-    const inputDescription = document.querySelector('#description');
-    inputUrl.value = url;
-    inputcategory.value = category;
-    inputName.value = name;
-    inputPrice.value = price;
-    inputDescription.value = description;
+// Envía los datos editados al servidor
+async function updateProduct(productId) {
+    if (!productId) {
+        console.error("No se encontró un ID en la URL para actualizar.");
+        alert("No se proporcionó un ID de producto en la URL para actualizar.");
+        return;
+    }
 
-    if (inputName) inputName.value = name;
-    if (inputCategory) inputCategory.value = category;
-    if (inputUrl) inputUrl.value = url;
-    if (inputPrice) inputPrice.value = price;
-    if (inputDescription) inputDescription.value = description;
-    
-};
-    
- 
+    const productUrl = `http://localhost:3001/products/${productId}`;
+    const productData = {
+        name: document.getElementById("product-name").value,
+        category: document.getElementById("category").value,
+        price: document.getElementById("price").value,
+        description: document.getElementById("description").value,
+        url: document.getElementById("img").value,
+    };
 
-const editProduct = async (e) => {
-    e.preventDefault();
-    const name = document.querySelector('#product-name').value;
-    const category = document.querySelector('#category').value;
-    const url = document.querySelector('#img').value;
-    const price = document.querySelector('#price').value;
-    const description = document.querySelector('#description').value;
-    const jsonProduct = JSON.stringify({name, category, url, price, description});
+    console.log("Datos enviados al servidor para actualización:", productData);
+
     try {
-        await clientService.updateProduct(id, jsonProduct);
-        window.location.href = './completed.html'
+        const response = await fetch(productUrl, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(productData),
+        });
+
+        if (response.ok) {
+            alert("Producto actualizado correctamente.");
+            console.log("Producto actualizado en el servidor.");
+            window.location.href = "./admin.html";
+        } else {
+            throw new Error(`Error ${response.status}: ${response.statusText}`);
+        }
     } catch (error) {
-        console.log(error)
+        console.error("Error al actualizar el producto:", error);
+        alert("No se pudo actualizar el producto. Verifica el servidor.");
     }
 }
 
-getProduct(id);
-form.addEventListener('submit', editProduct);*/
-
-const getProduct = async (id) => {
-    try {
-        // Obtiene el producto mediante la API
-        const arrProduct = await clientService.readProduct(id);
-        createCard(arrProduct);
-    } catch (error) {
-        console.log(error);
+// Maneja el evento de envío del formulario
+document.getElementById("edit-product-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const productId = getProductIdFromUrl();
+    if (productId) {
+        console.log("Enviando datos para el producto con ID:", productId);
+        await updateProduct(productId);
+    } else {
+        alert("No se encontró el ID del producto en la URL.");
     }
-};
+});
 
-const createCard = ({ name, category, url, price, description }) => {
-    const inputName = document.querySelector('#product-name');
-    const inputCategory = document.querySelector('#category');
-    const inputUrl = document.querySelector('#img');
-    const inputPrice = document.querySelector('#price');
-    const inputDescription = document.querySelector('#description');
-    const productImage = document.querySelector('.product img');  // Aquí es donde asignamos la imagen
-
-    // Asigna los valores a los campos
-    inputUrl.value = url;
-    inputCategory.value = category;
-    inputName.value = name;
-    inputPrice.value = price;
-    inputDescription.value = description;
-
-    if (inputName) inputName.value = name;
-    if (inputCategory) inputCategory.value = category;
-    if (inputUrl) inputUrl.value = url;
-    if (inputPrice) inputPrice.value = price;
-    if (inputDescription) inputDescription.value = description;
-
-    // Asigna la imagen principal en el detalle
-    if (productImage) {
-        productImage.src = url;  // Aquí es donde se cambia la imagen
+// Inicializa la página cargando el producto para edición
+document.addEventListener("DOMContentLoaded", () => {
+    const productId = getProductIdFromUrl();
+    if (productId) {
+        loadProductDetails(productId);
+    } else {
+        alert("No se encontró un ID de producto en la URL.");
     }
-};
-
-getProduct(id);
+});

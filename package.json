@@ -56,6 +56,7 @@
     "qs": "^6.13.0",
     "range-parser": "^1.2.1",
     "raw-body": "^2.5.2",
+    "react": "^19.0.0",
     "safe-buffer": "^5.2.1",
     "safer-buffer": "^2.1.2",
     "send": "^0.19.0",
@@ -72,11 +73,9 @@
     "utils-merge": "^1.0.1",
     "vary": "^1.1.2"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "json-server --watch db.json --port 3001"
-    
   },
   "keywords": [],
   "author": "",
