@@ -1,7 +1,4 @@
-/*
- * Copyright (c) 2024-2025 Your Company Name
- * All rights reserved.
- */
+
 import { clientService } from "./client-service.js";
 
 const url = new URL(window.location);
@@ -66,7 +63,7 @@ const noCoincidence = () => {
     productsBox.innerHTML = `<div class="no-coincidence">
                                 <i class="fa-brands fa-searchengin gigant-icon"></i>
                                 <p>No se encontró ningún resultado que coincida con la búsqueda.</p>
-                             </div>`;
+                            </div>`;
 }
 
 getProducts(search);

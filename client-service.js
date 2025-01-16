@@ -1,11 +1,5 @@
-/*
- * Copyright (c) 2025 Your Company Name
- * All rights reserved.
- */
 
 /*
- * Copyright (c) 2024 Your Company Name
- * All rights reserved.
  * Conexion con la API
  */
 

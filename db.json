@@ -1,14 +1,6 @@
 {
   "products": [
     {
-      "id": "fc8b0131-6520-489d-a0c2-dfcccd7f0ag2",
-      "name": "The Legend of Zelda",
-      "category": "Juegos",
-      "price": "15499",
-      "url": "./img/game-2.jpg",
-      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere accusantium ullam animi labore aliquid fugit dicta, id ad natus deserunt impedit magni veritatis, fugiat necessitatibus quo commodi ea blanditiis nostrum! Recusandae repudiandae obcaecati asperiores exercitationem ducimus nesciunt quo. Voluptas hic facere officia magnam nulla voluptatem recusandae tempora sed incidunt dolor!"
-    },
-    {
       "id": "fc8b0131-6520-489d-a0c2-dfcccd7f0ag7",
       "name": "Donkey Kong",
       "category": "Juegos",
@@ -145,20 +137,12 @@
       "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere accusantium ullam animi labore aliquid fugit dicta, id ad natus deserunt impedit magni veritatis, fugiat necessitatibus quo commodi ea blanditiis nostrum! Recusandae repudiandae obcaecati asperiores exercitationem ducimus nesciunt quo. Voluptas hic facere officia magnam nulla voluptatem recusandae tempora sed incidunt dolor!"
     },
     {
-      "id": "5f68",
-      "name": "test",
-      "category": "jeugo",
-      "img": "./img/game-2.jpg",
-      "price": 546546564,
-      "description": "sadsadasdasd"
-    },
-    {
-      "id": "66c2",
-      "name": "test",
-      "category": "juego",
-      "img": "./img/game-2.jpg",
-      "price": 56465456,
-      "description": "sadasdfd2sf3sdf32sd132f312d"
+      "id": "06b0",
+      "name": "prueba",
+      "category": "juegos",
+      "img": "https://www.behance.net/gallery/77171353/Mortal-Kombat-Esports-logo/modules/448176511",
+      "price": 1500,
+      "description": "Jueguito"
     }
   ]
 }

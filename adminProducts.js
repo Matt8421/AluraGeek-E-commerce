@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2025 Your Company Name
- * All rights reserved.
- */
 
 // URL de la API donde se obtienen los productos
 const apiUrl = 'http://localhost:3001/products';

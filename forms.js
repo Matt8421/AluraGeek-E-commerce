@@ -1,7 +1,4 @@
-/*
- * Copyright (c) 2024 Your Company Name
- * All rights reserved.
- */
+
 const inputs = document.querySelectorAll('.form-input');
 
 const valid = (e) => {

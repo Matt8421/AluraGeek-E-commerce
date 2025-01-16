@@ -1,7 +1,4 @@
-/*
- * Copyright (c) 2025 Your Company Name
- * All rights reserved.
- */
+
 /*
  * editProduct.js - Manejo de edición de productos.
  */

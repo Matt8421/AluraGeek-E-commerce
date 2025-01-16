@@ -1,7 +1,4 @@
-/*
- * Copyright (c) 2025 Your Company Name
- * All rights reserved.
- */
+
 // Función para mostrar los productos en el DOM
 const showProducts = (products) => {
     // Seleccionamos el contenedor donde vamos a mostrar los productos

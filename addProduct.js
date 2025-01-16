@@ -1,7 +1,4 @@
-/*
- * Copyright (c) 2025 Your Company Name
- * All rights reserved.
- */
+
 document.querySelector('.add-product__form').addEventListener('submit', async (event) => {
     event.preventDefault();
 

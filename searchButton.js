@@ -1,7 +1,4 @@
-/*
- * Copyright (c) 2025 Your Company Name
- * All rights reserved.
- */
+
 // Selección de los elementos
 const searchButton = document.querySelector('.menu__search-icon');
 const inputSearch = document.querySelector('.menu__search-input');
