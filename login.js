@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2025 Your Company Name
- * All rights reserved.
- */
-// login.js
 
 // Selecciona el botón de submit y el mensaje de error
 const submit = document.getElementById('login');
